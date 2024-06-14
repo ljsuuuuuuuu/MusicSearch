@@ -16,7 +16,7 @@ public class PlayList {
 	}
 	
 	public String getMusicInfo(int index) {
-		return playList.get(index).toString();
+		return playList.get(index).musicInfo();
 	}
 	
 	public Music getMusic(int index) {

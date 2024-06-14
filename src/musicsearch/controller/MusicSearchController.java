@@ -108,13 +108,17 @@ public class MusicSearchController {
 		if (!mMusicStorage.isEmpty()) {
 			view.displayMusicStorageInfo(mMusicStorage);
 			int index = view.readNumber("수정할 음원의 번호 입력 : ") - 1;
-			int musicID = view.readNumber("MusicID : ");
-			String title = view.readString("Title : ");
-			String artist = view.readString("Artist : ");
-			String composer = view.readString("Composer : ");
-			String genre = view.readString("Genre : ");
-			view.errorMessage(mMusicStorage.modifyMusicInfo(index, musicID, title, artist, composer, genre));
-			mMusicStorage.saveMusicListToFile();
+			if(mMusicStorage.checkIndex(index)){
+				int musicID = view.readNumber("MusicID : ");
+				String title = view.readString("Title : ");
+				String artist = view.readString("Artist : ");
+				String composer = view.readString("Composer : ");
+				String genre = view.readString("Genre : ");
+				view.errorMessage(mMusicStorage.modifyMusicInfo(index, musicID, title, artist, composer, genre));
+				mMusicStorage.saveMusicListToFile();				
+			} else {
+				view.errorMessage("indexOutOfBound");
+			}
 		} else {
 			view.errorMessage("empty");
 		}
@@ -203,6 +207,10 @@ public class MusicSearchController {
 	}
 
 	private void addMusicToPlayList() {
+		view.showMessage("================= 플레이리스트 음원 목록 =================");
+		view.displayPlaylistStorage(mPlayListStorage);
+		
+		view.showMessage("====================== 음원 목록 ======================");
 		view.displayMusicStorage(mMusicStorage);
 		int index = view.readNumber("추가할 음원의 번호 입력 : ") - 1;
 		Music music = mMusicStorage.getMusic(index);

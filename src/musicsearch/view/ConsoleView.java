@@ -10,8 +10,8 @@ import musicsearch.model.PlayListStorage;
 public class ConsoleView {
 
 	public void displayWelcome() {
-		String welcome = "*****************************************\n" + "*     Welcome to ljsu Music Storage     *\n"
-				+ "*****************************************";
+		String welcome = "***********************************************\n" + "*        Welcome to ljsu Music Storage        *\n"
+				+ "***********************************************";
 		System.out.println(welcome);
 	}
 
@@ -38,12 +38,12 @@ public class ConsoleView {
 	}
 
 	private void displayMenu(String[] menuList) {
-		System.out.println("=========================================");
+		showMessage("====================================================");
 		for (int i = 1; i < menuList.length; i++) {
 			System.out.println(menuList[i]);
 		}
-		System.out.println(menuList[0]);
-		System.out.println("=========================================");
+		showMessage(menuList[0]);
+		showMessage("====================================================");
 	}
 
 	public int readNumber(String message) {

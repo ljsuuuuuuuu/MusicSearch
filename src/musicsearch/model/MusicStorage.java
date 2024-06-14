@@ -99,6 +99,13 @@ public class MusicStorage {
 		music.setGenre(genre);
 		return "success";
 	}
+	
+	public boolean checkIndex(int index) {
+		if (index < 0 || index >= musicList.size()) {
+			return false;
+		}
+		return true;
+	}
 
 	public int getMusicListSize() {
 		return musicList.size();
